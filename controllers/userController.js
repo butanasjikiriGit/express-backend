@@ -554,3 +554,29 @@ module.exports.userApprovedStatus = (req, res) => {
 	})
 	.catch((err) => errorHandler(err, req, res));
 }
+
+
+
+
+
+
+// Controller for deleteing a specific user (Admin only)
+module.exports.deleteUser = (req, res) => {
+
+	const userId = req.params.userId;
+
+	return User.findByIdAndDelete(userId)
+	.then((result) => {
+		if (!result){
+			return res.status(400).send({
+				message: 'Failed to delete'
+			})
+		} else {
+			return res.status(200).send({
+				message: 'User successfully deleted'
+			})
+		}
+	})
+	.catch((err) => errorHandler(err, req, res));
+
+}

@@ -26,7 +26,7 @@ router.patch('/to-bl/:userId', verify, verifyAdmin, userController.toBlackList);
 router.patch('/remove-bl/:userId', verify, verifyAdmin, userController.removeBlackList);
 
 // Router for getting all blacklisted users
-router.get('/all-bl', verify, userController.allBlacklisted);
+router.get('/all-bl', verify, verifyAdmin, userController.allBlacklisted);
 
 // Router for change user status
 router.patch('/status/:userId', verify, verifyAdmin, userController.updateUserStatus);
@@ -35,6 +35,9 @@ router.patch('/status/:userId', verify, verifyAdmin, userController.updateUserSt
 router.get('/status/pending', verify, verifyAdmin, userController.userPendingStatus);
 router.get('/status/rejected', verify, verifyAdmin, userController.userRejectedStatus);
 router.get('/status/approved', verify, verifyAdmin, userController.userApprovedStatus);
+
+// Router for deleting a specific user by ID
+router.delete('/:userId', verify, verifyAdmin, userController.deleteUser);
 
 // Router to get all users
 router.get('/all-users', verify, verifyAdmin, userController.getAllUser);
