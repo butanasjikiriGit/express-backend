@@ -580,3 +580,28 @@ module.exports.deleteUser = (req, res) => {
 	.catch((err) => errorHandler(err, req, res));
 
 }
+
+
+
+
+
+
+
+// Controller for getting user details (Admin only)
+module.exports.getUserDetails = (req, res) => {
+
+	const userId = req.params.userId;
+
+	return User.findById(userId)
+	.then((result) => {
+		if (!result) {
+			return res.status(404).send({
+				message: 'User does not exist'
+			})
+		} else {
+			return res.status(200).send(result);
+		}
+	})
+	.catch((err) => errorHandler(err, req, res));
+
+}

@@ -4,6 +4,10 @@ const userController = require('../controllers/userController.js');
 const { verify, verifyAdmin } = require('../auth.js');
 
 
+
+// Router to get all users
+router.get('/all-users', verify, verifyAdmin, userController.getAllUser);
+
 // Router for user registration
 router.post('/register', userController.registerUser);
 
@@ -39,8 +43,8 @@ router.get('/status/approved', verify, verifyAdmin, userController.userApprovedS
 // Router for deleting a specific user by ID
 router.delete('/:userId', verify, verifyAdmin, userController.deleteUser);
 
-// Router to get all users
-router.get('/all-users', verify, verifyAdmin, userController.getAllUser);
+// Router for getting specific user by ID
+router.get('/:userId', verify, verifyAdmin, userController.getUserDetails);
 
 
 
